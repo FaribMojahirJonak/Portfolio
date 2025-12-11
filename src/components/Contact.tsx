@@ -254,7 +254,6 @@ export function Contact() {
                         scale: 1.05,
                         x: 10,
                       }}
-                      transition={{ duration: 0 }}
                       className="flex items-center gap-4 p-4 rounded-lg bg-white/5 border border-primary/20 hover:border-primary/40 transition-all duration-0 group"
                     >
                       <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${link.color} flex items-center justify-center group-hover:shadow-lg transition-all duration-300`}>
