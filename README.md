@@ -1,11 +1,28 @@
+This site showcases my selected design works, case studies, and experiments in digital product design. It’s designed to be fast, clean, and user-focused—just like the products I aim to build.
 
-  # Modern Portfolio Website Design
+🎨 About the Project
 
-  This is a code bundle for Modern Portfolio Website Design. The original project is available at https://www.figma.com/design/b1Wp0FIL458WQShafRtrFA/Modern-Portfolio-Website-Design.
+This portfolio is built to highlight my approach to design: research-driven decisions, thoughtful problem-solving, and modern visual aesthetics.
+You’ll find sections for:
 
-  ## Running the code
+Case studies
 
-  Run `npm i` to install the dependencies.
+Selected project highlights
 
-  Run `npm run dev` to start the development server.
-  
+My design process
+
+Contact / Hire me
+
+Everything is structured to help recruiters and collaborators understand how I think, not just what I make.
+
+🛠️ Tech Stack
+
+This site is built with modern frontend tools to ensure performance, accessibility, and smooth interactions.
+
+HTML / CSS / JavaScript
+
+TailwindCSS
+
+Vite (update based on your setup)
+
+Vercel
