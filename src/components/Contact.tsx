@@ -12,10 +12,69 @@ export function Contact() {
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [status, setStatus] = useState<{ type: "" | "success" | "error"; message: string }>({
+    type: "",
+    message: "",
+  });
+
+  const DISCORD_WEBHOOK = import.meta.env.VITE_DISCORD_WEBHOOK;
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    // Add your form submission logic here
+    setStatus({ type: "", message: "" });
+
+    if (!DISCORD_WEBHOOK) {
+      setStatus({ type: "error", message: "Add your Discord webhook to .env as VITE_DISCORD_WEBHOOK." });
+      return;
+    }
+
+    try {
+      setIsSubmitting(true);
+      const res = await fetch(DISCORD_WEBHOOK, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          content: `📩 New portfolio contact`,
+          embeds: [
+            {
+              title: "New Contact Form Submission",
+              fields: [
+                {
+                  name: "Name",
+                  value: formData.name,
+                  inline: true,
+                },
+                {
+                  name: "Email",
+                  value: formData.email,
+                  inline: true,
+                },
+                {
+                  name: "Message",
+                  value: formData.message,
+                },
+              ],
+              color: 0x5865f2,
+            },
+          ],
+        }),
+      });
+
+      if (res.ok) {
+        setStatus({ type: "success", message: "Message received. I will reply within 24-48 hours." });
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        setStatus({ type: "error", message: "Send failed. Please try again." });
+      }
+    } catch (error) {
+      console.error(error);
+      setStatus({ type: "error", message: "Network error. Please try later." });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -46,7 +105,7 @@ export function Contact() {
     },
     {
       name: "Email",
-      url: "faribmojahir19@gmail.com",
+      url: "mailto:faribmojahirjonak@gmail.com",
       icon: Mail,
       color: "from-[#a855f7] to-[#8b3fd9]",
     },
@@ -135,12 +194,27 @@ export function Contact() {
                 <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                   <Button
                     type="submit"
+                    disabled={isSubmitting}
                     className="w-full bg-gradient-to-r from-primary to-secondary hover:shadow-lg hover:shadow-primary/50 transition-all duration-300 flex items-center justify-center gap-2"
                   >
                     <Send className="w-4 h-4" />
-                    Send Message
+                    {isSubmitting ? "Sending..." : "Send Message"}
                   </Button>
                 </motion.div>
+
+                {status.message && (
+                  <div
+                    className={`text-sm ${
+                      status.type === "success"
+                        ? "text-emerald-400"
+                        : status.type === "error"
+                        ? "text-red-400"
+                        : "text-muted-foreground"
+                    }`}
+                  >
+                    {status.message}
+                  </div>
+                )}
               </form>
 
               {/* Corner Accents */}
