@@ -6,37 +6,37 @@ const portfolioItems = [
     id: 1,
     title: "Music Player",
     category: "UI/UX Design",
-    image: "images/music.png",
+    image: "/images/music.png",
   },
   {
     id: 2,
     title: "Meal Planner",
     category: "UI/UX Design",
-    image: "images/meal.png",
+    image: "/images/meal.png",
   },
   {
     id: 3,
     title: "Live News",
     category: "UI/UX Design",
-    image: "images/news.png",
+    image: "/images/news.png",
   },
   {
     id: 4,
     title: "To-Do App",
     category: "UI/UX Design",
-    image: "images/todo.png",
+    image: "/images/todo.png",
   },
   {
     id: 5,
     title: "Language Learning",
     category: "UI/UX Design",
-    image: "images/language.png",
+    image: "/images/language.png",
   },
   {
     id: 6,
     title: "Recipe App",
     category: "UI/UX Design",
-    image: "images/recipe.png",
+    image: "/images/recipe.png",
   },
 ];
 
