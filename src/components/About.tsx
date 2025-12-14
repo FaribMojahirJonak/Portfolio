@@ -1,7 +1,23 @@
 import { motion } from "motion/react";
+import { useEffect, useState } from "react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 
 export function About() {
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  useEffect(() => {
+    // Check if user prefers reduced motion
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setPrefersReducedMotion(mediaQuery.matches);
+
+    const handleChange = (e: MediaQueryListEvent) => {
+      setPrefersReducedMotion(e.matches);
+    };
+
+    mediaQuery.addEventListener("change", handleChange);
+    return () => mediaQuery.removeEventListener("change", handleChange);
+  }, []);
+
   return (
     <section id="about" className="relative py-32 px-6">
       {/* Background Elements */}
@@ -13,7 +29,7 @@ export function About() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: prefersReducedMotion ? 0.01 : 0.6 }}
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-6xl mb-4 bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
@@ -24,24 +40,24 @@ export function About() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="grid md:grid-cols-2 gap-12 items-stretch">
           {/* Image */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="relative"
+            transition={{ duration: prefersReducedMotion ? 0.01 : 0.6 }}
+            className="relative h-96"
           >
-            <div className="relative overflow-hidden rounded-2xl backdrop-blur-md bg-white/5 border border-primary/20 p-4 shadow-2xl shadow-primary/10">
+            <div className="relative h-full overflow-hidden rounded-2xl backdrop-blur-md bg-white/5 border border-primary/20 shadow-2xl shadow-primary/10">
               {/* Glowing border effect */}
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary via-secondary to-accent opacity-20 blur-xl" />
               
-              <div className="relative aspect-square rounded-xl overflow-hidden">
+              <div className="relative w-full h-full rounded-xl overflow-hidden">
                 <ImageWithFallback
-                  src="images/avatar.png"
+                  src="/images/avatar.png"
                   alt="Farib Mojahir Jonak"
-                  className="w-full h-full object-cover"
+                  className="absolute inset-0 w-full h-full object-cover object-center"
                 />
                 <div className="absolute inset-0 bg-black/10" />
               </div>
@@ -57,8 +73,8 @@ export function About() {
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="space-y-6"
+            transition={{ duration: prefersReducedMotion ? 0.01 : 0.6, delay: 0.2 }}
+            className="space-y-6 h-96"
           >
             <div className="relative p-8 rounded-xl backdrop-blur-md bg-white/5 border border-primary/20 shadow-xl">
               <h3 className="text-2xl md:text-3xl mb-4 text-primary">

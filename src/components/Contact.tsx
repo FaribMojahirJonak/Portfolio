@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Send, Mail, Linkedin, ExternalLink, Facebook } from "lucide-react";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
@@ -17,6 +17,21 @@ export function Contact() {
     type: "",
     message: "",
   });
+
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  useEffect(() => {
+    // Check if user prefers reduced motion
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setPrefersReducedMotion(mediaQuery.matches);
+
+    const handleChange = (e: MediaQueryListEvent) => {
+      setPrefersReducedMotion(e.matches);
+    };
+
+    mediaQuery.addEventListener("change", handleChange);
+    return () => mediaQuery.removeEventListener("change", handleChange);
+  }, []);
 
   const DISCORD_WEBHOOK = import.meta.env.VITE_DISCORD_WEBHOOK;
 
@@ -122,7 +137,7 @@ export function Contact() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: prefersReducedMotion ? 0.01 : 0.6 }}
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-6xl mb-4 bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
@@ -139,7 +154,7 @@ export function Contact() {
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: prefersReducedMotion ? 0.01 : 0.6 }}
           >
             <div className="relative p-8 rounded-xl backdrop-blur-md bg-white/5 border border-primary/20 shadow-xl">
               <form onSubmit={handleSubmit} className="space-y-6">
@@ -191,7 +206,7 @@ export function Contact() {
                   />
                 </div>
 
-                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                <motion.div whileHover={!prefersReducedMotion ? { scale: 1.02 } : {}} whileTap={!prefersReducedMotion ? { scale: 0.98 } : {}}>
                   <Button
                     type="submit"
                     disabled={isSubmitting}
@@ -228,7 +243,7 @@ export function Contact() {
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: prefersReducedMotion ? 0.01 : 0.6, delay: 0.2 }}
             className="space-y-4"
           >
             <div className="relative p-8 rounded-xl backdrop-blur-md bg-white/5 border border-primary/20 shadow-xl mb-8">
@@ -248,16 +263,15 @@ export function Contact() {
                       rel="noopener noreferrer"
                       initial={{ opacity: 0, x: 20 }}
                       whileInView={{ opacity: 1, x: 0 }}
-                      animate={{ scale: 1, x: 0, transition: { type: "tween", duration: 0.16, ease: "easeOut" } }}
                       viewport={{ once: true }}
-                      transition={{ duration: 0.4 }}
-                      whileHover={{
+                      transition={{ duration: prefersReducedMotion ? 0.01 : 0.4 }}
+                      whileHover={!prefersReducedMotion ? {
                         scale: 1.04,
                         x: 6,
                         transition: { type: "tween", duration: 0.16, ease: "easeOut" },
-                      }}
-                      whileTap={{ scale: 0.98 }}
-                      className="flex items-center gap-4 p-4 rounded-lg bg-white/5 border border-primary/20 hover:border-primary/40 transition-all duration-150 group"
+                      } : {}}
+                      whileTap={!prefersReducedMotion ? { scale: 0.98 } : {}}
+                      className="flex items-center gap-4 p-4 rounded-lg bg-white/5 border border-primary/20 hover:border-primary/40 transition-all duration-150 group will-change-transform"
                     >
                       <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${link.color} flex items-center justify-center group-hover:shadow-lg transition-all duration-300`}>
                         <Icon className="w-5 h-5 text-white" />
@@ -267,7 +281,7 @@ export function Contact() {
                       </span>
                       <motion.div
                         className="text-muted-foreground group-hover:text-primary transition-colors duration-300"
-                        whileHover={{ x: 5 }}
+                        whileHover={!prefersReducedMotion ? { x: 5 } : {}}
                       >
                         →
                       </motion.div>

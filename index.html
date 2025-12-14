@@ -4,13 +4,63 @@
     <head>
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Farib Mojahir Jonak</title>
+      <meta name="description" content="UI/UX Designer & User Research Specialist. Creating intuitive and engaging digital experiences through user-centered design." />
+      <meta name="theme-color" content="#0a0a0f" />
+      
+      <title>Farib Mojahir Jonak - UI/UX Designer & User Research Specialist</title>
       <link rel="icon" type="image/png" href="/images/avatar.png" />
+      
+      <!-- Open Graph for social sharing -->
+      <meta property="og:title" content="Farib Mojahir Jonak - UI/UX Designer" />
+      <meta property="og:description" content="User Research Specialist creating intuitive and engaging digital experiences through user-centered design." />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="https://faribmojahir.com" />
+      <meta property="og:image" content="/images/avatar.png" />
+      <meta property="og:image:width" content="400" />
+      <meta property="og:image:height" content="400" />
+      
+      <!-- Twitter Card for social sharing -->
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="Farib Mojahir Jonak - UI/UX Designer" />
+      <meta name="twitter:description" content="User Research Specialist creating intuitive digital experiences." />
+      <meta name="twitter:image" content="/images/avatar.png" />
+      
+      <!-- Preload critical fonts with preconnect -->
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link rel="preload" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" as="style">
+      <link rel="prefetch" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap">
+      
+      <!-- Structured Data (JSON-LD) for SEO -->
+      <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Farib Mojahir Jonak",
+        "jobTitle": "UI/UX Designer & User Research Specialist",
+        "image": "/images/avatar.png",
+        "sameAs": [
+          "https://www.linkedin.com/in/faribmojahirjonak/",
+          "https://www.behance.net/faribmojahirjonak",
+          "https://www.facebook.com/farib.mojahir"
+        ],
+        "url": "https://faribmojahir.com"
+      }
+      </script>
+      
+      <!-- Optimize scrolling behavior -->
+      <style>
+        html {
+          scroll-behavior: smooth;
+          height: 100vh;
+          height: 100dvh;
+        }
+      </style>
     </head>
 
     <body>
       <div id="root"></div>
-      <script type="module" src="/src/main.tsx"></script>
+      <script type="module" src="/src/main.tsx" defer></script>
     </body>
   </html>
   

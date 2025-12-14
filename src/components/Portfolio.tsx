@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import { useEffect, useState } from "react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 
 const portfolioItems = [
@@ -46,6 +47,21 @@ const portfolioItems = [
 ];
 
 export function Portfolio() {
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  useEffect(() => {
+    // Check if user prefers reduced motion
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setPrefersReducedMotion(mediaQuery.matches);
+
+    const handleChange = (e: MediaQueryListEvent) => {
+      setPrefersReducedMotion(e.matches);
+    };
+
+    mediaQuery.addEventListener("change", handleChange);
+    return () => mediaQuery.removeEventListener("change", handleChange);
+  }, []);
+
   return (
     <section id="portfolio" className="relative py-32 px-6">
       {/* Background Elements */}
@@ -57,7 +73,7 @@ export function Portfolio() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: prefersReducedMotion ? 0.01 : 0.6 }}
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-6xl mb-4 bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
@@ -75,7 +91,7 @@ export function Portfolio() {
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              transition={{ duration: prefersReducedMotion ? 0.01 : 0.6, delay: index * 0.1 }}
               className="group relative"
             >
               <a
@@ -85,21 +101,24 @@ export function Portfolio() {
                 className={item.url ? "block" : undefined}
               >
                 <motion.div
-                  whileHover={{ scale: 1.02 }}
+                  whileHover={!prefersReducedMotion ? { scale: 1.02 } : {}}
                   transition={{ duration: 0.3 }}
                   className="relative overflow-hidden rounded-xl backdrop-blur-md bg-white/5 border border-primary/20 shadow-lg shadow-primary/5"
                 >
                   {/* Image Container */}
                   <div className="relative aspect-video overflow-hidden">
                     <motion.div
-                      whileHover={{ scale: 1.1 }}
+                      whileHover={!prefersReducedMotion ? { scale: 1.1 } : {}}
                       transition={{ duration: 0.6 }}
-                      className="w-full h-full"
+                      className="w-full h-full will-change-transform"
                     >
                       <ImageWithFallback
                         src={item.image}
                         alt={item.title}
                         className="w-full h-full object-cover"
+                        loading="lazy"
+                        width={640}
+                        height={360}
                       />
                     </motion.div>
                     
@@ -107,19 +126,21 @@ export function Portfolio() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-300" />
                     
                     {/* Glow Effect on Hover */}
-                    <motion.div
-                      className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                      style={{
-                        background: "radial-gradient(circle at center, rgba(0, 212, 255, 0.2), transparent 70%)",
-                      }}
-                    />
+                    {!prefersReducedMotion && (
+                      <motion.div
+                        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                        style={{
+                          background: "radial-gradient(circle at center, rgba(0, 212, 255, 0.2), transparent 70%)",
+                        }}
+                      />
+                    )}
                   </div>
 
                   {/* Content Overlay */}
                   <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
                     <motion.span
                       className="inline-block px-3 py-1 rounded-full bg-primary/20 backdrop-blur-sm border border-primary/30 text-xs mb-2 text-primary"
-                      whileHover={{ scale: 1.05 }}
+                      whileHover={!prefersReducedMotion ? { scale: 1.05 } : {}}
                     >
                       {item.category}
                     </motion.span>

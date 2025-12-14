@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import { useEffect, useState } from "react";
 import { Search, LayoutGrid, Handshake, SplinePointer, FolderTree, FlaskConical } from "lucide-react";
 
 const skills = [
@@ -59,6 +60,21 @@ const skills = [
 ];
 
 export function Skills() {
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  useEffect(() => {
+    // Check if user prefers reduced motion
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setPrefersReducedMotion(mediaQuery.matches);
+
+    const handleChange = (e: MediaQueryListEvent) => {
+      setPrefersReducedMotion(e.matches);
+    };
+
+    mediaQuery.addEventListener("change", handleChange);
+    return () => mediaQuery.removeEventListener("change", handleChange);
+  }, []);
+
   return (
     <section id="skills" className="relative py-32 px-6">
 
@@ -73,7 +89,7 @@ export function Skills() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: prefersReducedMotion ? 0.01 : 0.6 }}
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-6xl mb-4 bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
@@ -95,17 +111,17 @@ export function Skills() {
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                transition={{ duration: prefersReducedMotion ? 0.01 : 0.6, delay: index * 0.1 }}
               >
 
                 {/* OUTER WRAPPER (fixes corner bleed) */}
                 <motion.div
-                  whileHover={{
+                  whileHover={!prefersReducedMotion ? {
                     scale: 1.05,
                     boxShadow: `0 0 40px ${skill.glow}`,
-                  }}
+                  } : {}}
                   transition={{ duration: 0.3 }}
-                  className="relative group h-full rounded-xl overflow-hidden"
+                  className="relative group h-full rounded-xl overflow-hidden will-change-transform"
                 >
 
                   {/* CARD */}
@@ -128,9 +144,9 @@ export function Skills() {
                     {/* Icon */}
                     <div className="relative mb-6">
                       <motion.div
-                        whileHover={{ rotate: 360 }}
+                        whileHover={!prefersReducedMotion ? { rotate: 360 } : {}}
                         transition={{ duration: 0.6 }}
-                        className={`w-16 h-16 rounded-lg bg-gradient-to-br ${skill.color} p-0.5 mx-auto`}
+                        className={`w-16 h-16 rounded-lg bg-gradient-to-br ${skill.color} p-0.5 mx-auto will-change-transform`}
                       >
                         <div className="w-full h-full rounded-lg bg-background flex items-center justify-center">
                           <Icon className="w-8 h-8" style={{ color: skill.iconColor }} />
@@ -138,19 +154,21 @@ export function Skills() {
                       </motion.div>
 
                       {/* Glow */}
-                      <motion.div
-                        className={`absolute inset-0 rounded-lg bg-gradient-to-br ${skill.color} blur-xl opacity-0 
-                                    group-hover:opacity-50`}
-                        animate={{
-                          scale: [1, 1.2, 1],
-                          opacity: [0.3, 0.6, 0.3],
-                        }}
-                        transition={{
-                          duration: 2,
-                          repeat: Infinity,
-                          ease: "easeInOut",
-                        }}
-                      />
+                      {!prefersReducedMotion && (
+                        <motion.div
+                          className={`absolute inset-0 rounded-lg bg-gradient-to-br ${skill.color} blur-xl opacity-0 
+                                      group-hover:opacity-50`}
+                          animate={{
+                            scale: [1, 1.2, 1],
+                            opacity: [0.3, 0.6, 0.3],
+                          }}
+                          transition={{
+                            duration: 2,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                          }}
+                        />
+                      )}
                     </div>
 
                     {/* Text */}

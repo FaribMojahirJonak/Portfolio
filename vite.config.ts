@@ -52,6 +52,15 @@
     build: {
       target: 'esnext',
       outDir: 'dist',
+      minify: true,
+      reportCompressedSize: false,
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            'motion': ['motion/react'],
+          },
+        },
+      },
     },
     server: {
       port: 3000,
