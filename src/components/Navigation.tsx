@@ -24,10 +24,10 @@ export function Navigation() {
         </motion.div>
         
         <div className="hidden md:flex gap-8">
-          {['Hero', 'Portfolio', 'About', 'Skills', 'Contact'].map((item) => (
+          {['Home', 'Portfolio', 'About', 'Skills', 'Contact'].map((item) => (
             <motion.button
               key={item}
-              onClick={() => scrollToSection(item.toLowerCase())}
+              onClick={() => scrollToSection(item === 'Home' ? 'hero' : item.toLowerCase())}
               whileHover={{ scale: 1.1, color: '#00d4ff' }}
               whileTap={{ scale: 0.95 }}
               className="relative transition-colors duration-300 hover:text-primary"

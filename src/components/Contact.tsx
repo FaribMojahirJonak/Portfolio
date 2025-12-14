@@ -248,13 +248,16 @@ export function Contact() {
                       rel="noopener noreferrer"
                       initial={{ opacity: 0, x: 20 }}
                       whileInView={{ opacity: 1, x: 0 }}
+                      animate={{ scale: 1, x: 0, transition: { type: "tween", duration: 0.16, ease: "easeOut" } }}
                       viewport={{ once: true }}
-                      transition={{ duration: 0.4, delay: index * 0.1 }}
-                      whileHover={{ 
-                        scale: 1.05,
-                        x: 10,
+                      transition={{ duration: 0.4 }}
+                      whileHover={{
+                        scale: 1.04,
+                        x: 6,
+                        transition: { type: "tween", duration: 0.16, ease: "easeOut" },
                       }}
-                      className="flex items-center gap-4 p-4 rounded-lg bg-white/5 border border-primary/20 hover:border-primary/40 transition-all duration-0 group"
+                      whileTap={{ scale: 0.98 }}
+                      className="flex items-center gap-4 p-4 rounded-lg bg-white/5 border border-primary/20 hover:border-primary/40 transition-all duration-150 group"
                     >
                       <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${link.color} flex items-center justify-center group-hover:shadow-lg transition-all duration-300`}>
                         <Icon className="w-5 h-5 text-white" />

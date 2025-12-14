@@ -4,33 +4,38 @@ import { ImageWithFallback } from "./figma/ImageWithFallback";
 const portfolioItems = [
   {
     id: 1,
-    title: "Music Player",
+    title: "Revenue Split Fintech App",
     category: "UI/UX Design",
-    image: "/images/music.png",
+    image: "/images/gaming_fintech.png",
+    url: "https://dribbble.com/shots/26880380-Revenue-Split-Fintech-App",
   },
   {
     id: 2,
-    title: "Meal Planner",
+    title: "Legal Advocacy Pro",
     category: "UI/UX Design",
-    image: "/images/meal.png",
+    image: "/images/legal_advocacy_pro.png",
+    url: "https://dribbble.com/shots/26880296-Legal-Advocacy-Pro-Advocacy-assessment-app",
   },
   {
     id: 3,
-    title: "Live News",
+    title: "Dashboard Design",
     category: "UI/UX Design",
-    image: "/images/news.png",
+    image: "/images/dashboard.png",
+    url: "https://dribbble.com/shots/26880174-Dashboard-Design",
   },
   {
     id: 4,
-    title: "To-Do App",
+    title: "Fly Far Int. - Redesign",
     category: "UI/UX Design",
-    image: "/images/todo.png",
+    image: "/images/fly_far.png",
+    url: "https://dribbble.com/shots/26880301-Fly-Far-International-Landing-Page",
   },
   {
     id: 5,
-    title: "Language Learning",
+    title: "PurrCare - Cat adoption website",
     category: "UI/UX Design",
-    image: "/images/language.png",
+    image: "/images/purrcare.png",
+    url: "https://dribbble.com/shots/26880162-PurrCare-Cat-foster-and-adoption-website",
   },
   {
     id: 6,
@@ -73,54 +78,61 @@ export function Portfolio() {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className="group relative"
             >
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.3 }}
-                className="relative overflow-hidden rounded-xl backdrop-blur-md bg-white/5 border border-primary/20 shadow-lg shadow-primary/5"
+              <a
+                href={item.url || undefined}
+                target={item.url ? "_blank" : undefined}
+                rel={item.url ? "noopener noreferrer" : undefined}
+                className={item.url ? "block" : undefined}
               >
-                {/* Image Container */}
-                <div className="relative aspect-video overflow-hidden">
-                  <motion.div
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.6 }}
-                    className="w-full h-full"
-                  >
-                    <ImageWithFallback
-                      src={item.image}
-                      alt={item.title}
-                      className="w-full h-full object-cover"
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ duration: 0.3 }}
+                  className="relative overflow-hidden rounded-xl backdrop-blur-md bg-white/5 border border-primary/20 shadow-lg shadow-primary/5"
+                >
+                  {/* Image Container */}
+                  <div className="relative aspect-video overflow-hidden">
+                    <motion.div
+                      whileHover={{ scale: 1.1 }}
+                      transition={{ duration: 0.6 }}
+                      className="w-full h-full"
+                    >
+                      <ImageWithFallback
+                        src={item.image}
+                        alt={item.title}
+                        className="w-full h-full object-cover"
+                      />
+                    </motion.div>
+                    
+                    {/* Gradient Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-300" />
+                    
+                    {/* Glow Effect on Hover */}
+                    <motion.div
+                      className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      style={{
+                        background: "radial-gradient(circle at center, rgba(0, 212, 255, 0.2), transparent 70%)",
+                      }}
                     />
-                  </motion.div>
-                  
-                  {/* Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-300" />
-                  
-                  {/* Glow Effect on Hover */}
-                  <motion.div
-                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    style={{
-                      background: "radial-gradient(circle at center, rgba(0, 212, 255, 0.2), transparent 70%)",
-                    }}
-                  />
-                </div>
+                  </div>
 
-                {/* Content Overlay */}
-                <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                  <motion.span
-                    className="inline-block px-3 py-1 rounded-full bg-primary/20 backdrop-blur-sm border border-primary/30 text-xs mb-2 text-primary"
-                    whileHover={{ scale: 1.05 }}
-                  >
-                    {item.category}
-                  </motion.span>
-                  <h3 className="text-xl group-hover:text-primary transition-colors duration-300">
-                    {item.title}
-                  </h3>
-                </div>
+                  {/* Content Overlay */}
+                  <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                    <motion.span
+                      className="inline-block px-3 py-1 rounded-full bg-primary/20 backdrop-blur-sm border border-primary/30 text-xs mb-2 text-primary"
+                      whileHover={{ scale: 1.05 }}
+                    >
+                      {item.category}
+                    </motion.span>
+                    <h3 className="text-xl group-hover:text-primary transition-colors duration-300">
+                      {item.title}
+                    </h3>
+                  </div>
 
-                {/* Corner Accents */}
-                <div className="absolute top-0 left-0 w-16 h-16 border-t-2 border-l-2 border-primary/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="absolute bottom-0 right-0 w-16 h-16 border-b-2 border-r-2 border-secondary/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              </motion.div>
+                  {/* Corner Accents */}
+                  <div className="absolute top-0 left-0 w-16 h-16 border-t-2 border-l-2 border-primary/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute bottom-0 right-0 w-16 h-16 border-b-2 border-r-2 border-secondary/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </motion.div>
+              </a>
             </motion.div>
           ))}
         </div>
