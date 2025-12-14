@@ -26,8 +26,7 @@ export function Hero() {
   };
 
   // Reduce particles on low-end devices (detect by prefers-reduced-motion)
-  const particleCount = prefersReducedMotion ? 0 : 20;
-  const animationDuration = prefersReducedMotion ? 0.01 : 10;
+  const particleCount = prefersReducedMotion ? 0 : 12;
 
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -82,7 +81,7 @@ export function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: prefersReducedMotion ? 0.01 : 0.8, delay: 0.2 }}
+          transition={{ duration: prefersReducedMotion ? 0.01 : 0.5, delay: 0 }}
           className="mb-6"
         >
           <span className="inline-block px-4 py-2 rounded-full border border-primary/30 bg-primary/10 backdrop-blur-sm text-sm tracking-wider text-primary">
@@ -91,9 +90,9 @@ export function Hero() {
         </motion.div>
 
         <motion.h1
-          initial={{ opacity: 0, y: 30 }}
+          initial={false}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: prefersReducedMotion ? 0.01 : 0.8, delay: 0.4 }}
+          transition={{ duration: prefersReducedMotion ? 0.01 : 0.4, delay: 0 }}
           className="text-5xl md:text-7xl lg:text-8xl mb-6 bg-gradient-to-r from-white via-primary to-secondary bg-clip-text text-transparent"
         >
           Farib Mojahir Jonak

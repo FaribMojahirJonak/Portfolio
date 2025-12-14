@@ -1,10 +1,21 @@
 import { createRoot } from "react-dom/client";
-import { inject } from "@vercel/analytics";
 import App from "./App.tsx";
 import "./index.css";
 
-// Inject Vercel Analytics
-inject();
+// Defer Vercel Analytics so it does not block first paint
+const scheduleAnalytics = () => {
+  import("@vercel/analytics")
+    .then(({ inject }) => inject())
+    .catch(() => {});
+};
+
+if (import.meta.env.PROD) {
+  if ("requestIdleCallback" in window) {
+    requestIdleCallback(() => scheduleAnalytics());
+  } else {
+    setTimeout(scheduleAnalytics, 0);
+  }
+}
 
 // Performance monitoring for Web Vitals
 if ("PerformanceObserver" in window) {
