@@ -106,7 +106,7 @@ export function Portfolio() {
                   className="relative overflow-hidden rounded-xl backdrop-blur-md bg-white/5 border border-primary/20 shadow-lg shadow-primary/5"
                 >
                   {/* Image Container */}
-                  <div className="relative aspect-video overflow-hidden">
+                  <div className="relative w-full aspect-video overflow-hidden">
                     <motion.div
                       whileHover={!prefersReducedMotion ? { scale: 1.1 } : {}}
                       transition={{ duration: 0.6 }}
@@ -117,8 +117,6 @@ export function Portfolio() {
                         alt={item.title}
                         className="w-full h-full object-cover"
                         loading="lazy"
-                        width={640}
-                        height={360}
                       />
                     </motion.div>
                     

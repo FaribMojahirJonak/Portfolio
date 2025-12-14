@@ -40,14 +40,14 @@ export function About() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-12 items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:items-stretch">
           {/* Image */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: prefersReducedMotion ? 0.01 : 0.6 }}
-            className="relative h-96"
+            className="relative w-full aspect-square md:aspect-auto md:h-96"
           >
             <div className="relative h-full overflow-hidden rounded-2xl backdrop-blur-md bg-white/5 border border-primary/20 shadow-2xl shadow-primary/10">
               {/* Glowing border effect */}
@@ -74,7 +74,7 @@ export function About() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: prefersReducedMotion ? 0.01 : 0.6, delay: 0.2 }}
-            className="space-y-6 h-96"
+            className="space-y-6 h-auto md:h-96"
           >
             <div className="relative p-8 rounded-xl backdrop-blur-md bg-white/5 border border-primary/20 shadow-xl">
               <h3 className="text-2xl md:text-3xl mb-4 text-primary">
