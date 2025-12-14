@@ -1,4 +1,82 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+@font-face {
+  font-family: 'Orbitron';
+  font-style: normal;
+  font-weight: 400;
+  font-display: optional;
+  src: url('/fonts/Orbitron-400.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Orbitron';
+  font-style: normal;
+  font-weight: 500;
+  font-display: optional;
+  src: url('/fonts/Orbitron-500.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Orbitron';
+  font-style: normal;
+  font-weight: 600;
+  font-display: optional;
+  src: url('/fonts/Orbitron-600.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Orbitron';
+  font-style: normal;
+  font-weight: 700;
+  font-display: optional;
+  src: url('/fonts/Orbitron-700.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Orbitron';
+  font-style: normal;
+  font-weight: 900;
+  font-display: optional;
+  src: url('/fonts/Orbitron-900.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Rajdhani';
+  font-style: normal;
+  font-weight: 300;
+  font-display: optional;
+  src: url('/fonts/Rajdhani-300.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Rajdhani';
+  font-style: normal;
+  font-weight: 400;
+  font-display: optional;
+  src: url('/fonts/Rajdhani-400.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Rajdhani';
+  font-style: normal;
+  font-weight: 500;
+  font-display: optional;
+  src: url('/fonts/Rajdhani-500.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Rajdhani';
+  font-style: normal;
+  font-weight: 600;
+  font-display: optional;
+  src: url('/fonts/Rajdhani-600.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Rajdhani';
+  font-style: normal;
+  font-weight: 700;
+  font-display: optional;
+  src: url('/fonts/Rajdhani-700.ttf') format('truetype');
+}
 
 /* Smooth scrolling optimization */
 html {

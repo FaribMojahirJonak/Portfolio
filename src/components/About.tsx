@@ -55,7 +55,7 @@ export function About() {
               
               <div className="relative w-full h-full rounded-xl overflow-hidden">
                 <ImageWithFallback
-                  src="/images/avatar.png"
+                  src="/images/avatar.webp"
                   alt="Farib Mojahir Jonak"
                   className="absolute inset-0 w-full h-full object-cover object-center"
                 />
