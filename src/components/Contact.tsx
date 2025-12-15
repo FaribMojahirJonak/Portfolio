@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import { useState, useEffect } from "react";
-import { Send, Mail, Linkedin, ExternalLink, Facebook } from "lucide-react";
+import { Send, Mail, Linkedin, ExternalLink, Facebook, Dribbble } from "lucide-react";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { Button } from "./ui/button";
@@ -101,9 +101,9 @@ export function Contact() {
 
   const socialLinks = [
     {
-      name: "Facebook",
-      url: "https://www.facebook.com/farib.mojahir",
-      icon: Facebook,
+      name: "Dribbble",
+      url: "https://dribbble.com/faribmojahirjonak",
+      icon: Dribbble,
       color: "from-[#13aff0] to-[#0e8ac4]",
     },
     {
