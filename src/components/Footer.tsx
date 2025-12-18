@@ -11,7 +11,7 @@ export function Footer() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="text-2xl bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent"
+            className="text-2xl text-primary"
           >
             Farib Mojahir Jonak
           </motion.div>

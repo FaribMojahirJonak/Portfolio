@@ -23,6 +23,6 @@ HTML / CSS / JavaScript
 
 TailwindCSS
 
-Vite (update based on your setup)
+Vite
 
 Vercel

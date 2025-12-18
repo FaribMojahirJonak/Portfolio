@@ -34,7 +34,7 @@ export function Navigation() {
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         <motion.div
           whileHover={!prefersReducedMotion ? { scale: 1.05 } : {}}
-          className="text-2xl font-bold bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent will-change-transform"
+          className="text-2xl font-bold text-primary will-change-transform"
         >
           Farib Mojahir Jonak
         </motion.div>
