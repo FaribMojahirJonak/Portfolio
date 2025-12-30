@@ -40,9 +40,11 @@ const portfolioItems = [
   },
   {
     id: 6,
-    title: "Recipe App",
+    title: "AxionByte — Software Solutions",
     category: "UI/UX Design",
-    image: "/images/recipe.webp",
+    image: "/images/axion_byte.webp",
+    url: "https://dribbble.com/shots/26931968-AxionByte-Software-Solutions-Landing-Page",
+
   },
 ];
 
